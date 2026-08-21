@@ -12,6 +12,8 @@
 - `/react ID REACTION` toggles per-user reactions, rendered inline as
   `[+1 x2]` and included in history replay. Supported names: +1, -1, laugh,
   heart, wow, eyes, fire, clap.
+- `/users` prints the current room roster into the chat log, with the host
+  marked, so the participant list is visible without the sidebar.
 
 ## [cli-v2.0.0] - 2026-08-18
 
