@@ -431,6 +431,7 @@ func appendFormattedMessage(m *Model, msg Message) {
 
 		if isMention(msg, m.nick) {
 			print("\a")
+			notify(fmt.Sprintf("%s mentioned you", msg.Nick), msg.Text)
 		}
 
 		if msg.ID != 0 {
