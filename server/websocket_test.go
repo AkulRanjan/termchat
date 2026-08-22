@@ -1286,6 +1286,34 @@ func TestReactionToggleAndCounts(t *testing.T) {
 	}
 }
 
+func TestReactionBroadcastCarriesReactorNick(t *testing.T) {
+	srv := startTestServer(t)
+
+	a := joinRoom(t, srv, "RACN", "alice", "")
+	defer a.close()
+
+	b := joinRoom(t, srv, "RACN", "bob", "")
+	defer b.close()
+
+	waitUsers(t, a, "alice", "bob")
+
+	a.send(shared.Message{Type: "message", Text: "ping"})
+
+	target := b.nextOfType("message")
+
+	b.send(shared.Message{Type: "reaction", ID: target.ID, Text: "+1"})
+
+	update := a.nextOfType("reaction")
+
+	if update.Nick != "bob" {
+		t.Errorf("reaction frame nick = %q, want bob", update.Nick)
+	}
+
+	if len(update.Reactions) != 1 || update.Reactions[0].Name != "+1" {
+		t.Errorf("reaction frame counts = %+v, want +1 x1", update.Reactions)
+	}
+}
+
 func TestReactionInvalidTargetsIgnored(t *testing.T) {
 	srv := startTestServer(t)
 
