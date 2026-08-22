@@ -4,16 +4,18 @@
 
 ### Added
 
-- `-v` as a shorthand for `--version` in the CLI.
+- `-v` as a shorthand for `--version` in the CLI. (by @ishaan-jindal)
 - Server-stamped message IDs: every chat message carries an ID (e.g. `#7`),
-  shown in the TUI and preserved in history replay.
+  shown in the TUI and preserved in history replay. (by @ishaan-jindal)
 - `/reply ID MESSAGE` quotes a message; the server resolves the quoted
-  nick/text from history and the TUI renders it as a quote line.
+  nick/text from history and the TUI renders it as a quote line. (by @ishaan-jindal)
 - `/react ID REACTION` toggles per-user reactions, rendered inline as
   `[+1 x2]` and included in history replay. Supported names: +1, -1, laugh,
-  heart, wow, eyes, fire, clap.
+  heart, wow, eyes, fire, clap. (by @ishaan-jindal)
+- Platform-specific system notifications (Linux, macOS, Windows) shown on
+  new messages, plus TUI rendering for message display. (by @AaryanKumarSingh136)
 - `/users` prints the current room roster into the chat log, with the host
-  marked, so the participant list is visible without the sidebar.
+  marked, so the participant list is visible without the sidebar. (by @AkulRanjan)
 
 ## [cli-v2.0.0] - 2026-08-18
 
@@ -80,6 +82,8 @@
   and PowerShell flow directly; `/bin/{binary}` validates against a whitelist
   of the 8 published release assets.
 
+By: @ishaan-jindal
+
 ## [cli-v1.1.1] - 2026-06-25
 
 ### Fixed
@@ -98,6 +102,8 @@
 
 - API and WebSocket Docker builds now trigger on shared/ package changes
 
+By: @ishaan-jindal
+
 ## [cli-v1.1.0] - 2026-06-04
 
 ### Added
@@ -111,9 +117,13 @@
 - Removed emoji rendering from TUI
 - Updated documentation and man page for password and host features
 
+By: @ishaan-jindal
+
 ## [cli-v1.0.1] - 2026-06-03
 
 No user-facing changes.
+
+By: @ishaan-jindal
 
 ## [cli-v1.0.0] - 2026-06-02
 
@@ -124,6 +134,8 @@ No user-facing changes.
 - LAN join via `--host` and `--port` flags
 - UDP multicast beacon for local room discovery
 
+By: @ishaan-jindal
+
 ## [cli-v0.4.4] - 2026-06-02
 
 ### Changed
@@ -131,11 +143,15 @@ No user-facing changes.
 - Extracted shared types into a `shared` module
 - Fixed AUR publishing workflow
 
+By: @ishaan-jindal
+
 ## [cli-v0.4.3] - 2026-06-01
 
 ### Added
 
 - Typing indicator - shows `[...]` next to users currently typing
+
+By: @ishaan-jindal
 
 ## [cli-v0.4.2] - 2026-05-31
 
@@ -149,11 +165,15 @@ No user-facing changes.
 
 - Updated default API and WebSocket URLs
 
+By: @ishaan-jindal
+
 ## [cli-v0.4.1] - 2026-05-19
 
 ### Fixed
 
 - Mention highlighting now highlights the full message, not just the nickname
+
+By: @ishaan-jindal
 
 ## [cli-v0.4.0] - 2026-05-19
 
@@ -166,6 +186,8 @@ No user-facing changes.
 
 - `/color` now immediately broadcasts updated user list to all clients
 
+By: @ishaan-jindal
+
 ## [cli-v0.3.0] - 2026-05-17
 
 ### Added
@@ -175,6 +197,8 @@ No user-facing changes.
 - Multiline textarea input (Alt+Enter for newline)
 - Standalone CLI UX improvements
 - Updated API routes and bootstrap scripts for new features
+
+By: @ishaan-jindal
 
 ## [cli-v0.2.1] - 2026-05-16
 
@@ -192,6 +216,8 @@ No user-facing changes.
 
 - API server periodically refreshes latest CLI version
 
+By: @ishaan-jindal
+
 ## [cli-v0.2.0] - 2026-05-16
 
 ### Added
@@ -207,6 +233,8 @@ No user-facing changes.
 
 - API server: added ca-certificates to runtime Docker image
 - API server: fixed version detection
+
+By: @ishaan-jindal
 
 ## [cli-v0.1.5] - 2026-05-15
 
@@ -231,3 +259,5 @@ No user-facing changes.
 
 - Windows and i686 compatibility
 - Bootstrapping flow for all platforms
+
+By: @ishaan-jindal

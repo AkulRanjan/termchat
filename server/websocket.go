@@ -518,6 +518,7 @@ func handleReaction(client *Client, msg Message) {
 	broadcastToRoom(client.RoomID, Message{
 		Type:      "reaction",
 		ID:        msg.ID,
+		Nick:      client.nickname(),
 		Reactions: reactions,
 	})
 }

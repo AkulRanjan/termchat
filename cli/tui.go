@@ -232,6 +232,23 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "reaction":
 			idx, ok := m.msgIndex[msg.ID]
 			if ok {
+				target := m.messages[idx].msg
+
+				// A growing vote total means a reaction was added,
+				// not removed.
+				before, after := 0, 0
+				for _, r := range target.Reactions {
+					before += r.Count
+				}
+				for _, r := range msg.Reactions {
+					after += r.Count
+				}
+
+				if target.Nick == m.nick && msg.Nick != "" && msg.Nick != m.nick && after > before {
+					print("\a")
+					notify(fmt.Sprintf("%s reacted to your message", msg.Nick), target.Text)
+				}
+
 				m.messages[idx].msg.Reactions = msg.Reactions
 				m.messages[idx].rendered = renderMessage(&m, m.messages[idx].msg)
 			}
@@ -437,8 +454,19 @@ func appendFormattedMessage(m *Model, msg Message) {
 			rendered: renderMessage(m, msg),
 		})
 
-		if isMention(msg, m.nick) {
+		title := ""
+
+		switch {
+		case isMention(msg, m.nick):
+			title = fmt.Sprintf("%s mentioned you", msg.Nick)
+
+		case msg.ReplyToID != 0 && msg.ReplyToNick == m.nick && msg.Nick != m.nick:
+			title = fmt.Sprintf("%s replied to your message", msg.Nick)
+		}
+
+		if title != "" {
 			print("\a")
+			notify(title, msg.Text)
 		}
 
 		if msg.ID != 0 {
